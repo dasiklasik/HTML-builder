@@ -11,10 +11,17 @@ stdout.write('Введите текст\n');
 stdin.on('data', data => {
   const parse = data.toString();
   if (parse.trim() === 'exit') {
+    stdout.write('Пока :)');
     process.exit();
   } else {
     writeStream.write(parse);
   }
 });
+
+process.on('SIGINT', () => {
+  stdout.write('\nПока :)');
+  process.exit();
+});
+
 
 
